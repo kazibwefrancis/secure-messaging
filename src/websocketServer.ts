@@ -8,10 +8,10 @@ export function startWebSocketServer(port: number = 8080) {
   wss = new WebSocket.Server({ port });
 
   wss.on('connection', (ws) => {
-    console.log('Client connected');
+    // Client connected
 
     ws.on('message', (message) => {
-      console.log('Received:', message);
+      // Message received
     });
 
     // Heartbeat

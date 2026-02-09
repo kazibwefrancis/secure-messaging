@@ -22,13 +22,15 @@ Data flow: UI actions -> Redux -> Database/WebSocket updates -> UI re-renders.
 
 ## Trade-offs and Improvements
 
-- **Virtualization**: Chat list uses simple scroll; could add react-window for better performance with large lists.
-- **Message Virtualization**: Not implemented; add for long histories.
-- **Real Encryption**: Placeholder only; integrate AES encryption for messages.
-- **Indexes**: Added basic indexes; could optimize further for search.
-- **Testing**: No tests; add unit tests for DB queries and reducers.
-- **Error Handling**: Basic; add comprehensive error boundaries.
-- **Security**: No real crypto; prevent leaks in logs/devtools by sanitizing output.
+- **Virtualization**: ✅ Implemented react-window for chat list and message view for optimal performance with large datasets.
+- **Seed Data**: ✅ Guaranteed 20,000+ messages (100-150 per chat across 200 chats).
+- **Connection Testing**: ✅ Added "Simulate Connection Drop" button to test reconnection logic.
+- **Security Logging**: ✅ Removed all console logging to prevent data leaks.
+- **Real Encryption**: Placeholder only; integrate AES-256-GCM encryption for messages in production.
+- **Indexes**: ✅ Added indexes on chatId+ts and lastMessageAt for query optimization.
+- **Testing**: Could add unit tests for DB queries, Redux reducers, and WebSocket reconnection logic.
+- **Error Handling**: Could add comprehensive error boundaries and user-friendly error messages.
+- **Cross-chat Search**: Could implement search across all chats (currently searches within selected chat).
 
 ## Security Hygiene
 

@@ -40,13 +40,15 @@ const ChatApp: React.FC = () => {
   };
 
   return (
-    <div style={{ display: 'flex', height: '100vh' }}>
-      <div style={{ width: '30%', borderRight: '1px solid #ccc' }}>
-        <ConnectionIndicator status={status} onSimulateDrop={handleSimulateDrop} />
-        <ChatList />
-      </div>
-      <div style={{ width: '70%' }}>
-        {selectedChatId ? <MessageView chatId={selectedChatId} /> : <div>Select a chat</div>}
+    <div style={{ display: 'flex', height: '100vh', flexDirection: 'column' }}>
+      <ConnectionIndicator />
+      <div style={{ display: 'flex', flex: 1 }}>
+        <div style={{ width: '30%', borderRight: '1px solid #ccc' }}>
+          <ChatList />
+        </div>
+        <div style={{ width: '70%' }}>
+          {selectedChatId ? <MessageView chatId={selectedChatId} /> : <div style={{ padding: '20px', textAlign: 'center', color: '#999' }}>Select a chat to start messaging</div>}
+        </div>
       </div>
     </div>
   );

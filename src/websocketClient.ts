@@ -18,7 +18,7 @@ export function connectWebSocket() {
   ws = new WebSocket('ws://localhost:8080');
 
   ws.onopen = () => {
-    console.log('WebSocket connected');
+    // WebSocket connected
     store.dispatch(setStatus('connected'));
     store.dispatch(resetReconnectAttempts());
     reconnectAttempts = 0;
@@ -30,19 +30,19 @@ export function connectWebSocket() {
   };
 
   ws.onclose = () => {
-    console.log('WebSocket closed');
+    // WebSocket closed
     store.dispatch(setStatus('offline'));
     attemptReconnect();
   };
 
   ws.onerror = (error) => {
-    console.error('WebSocket error:', error);
+    // WebSocket error occurred
   };
 }
 
 function attemptReconnect() {
   if (reconnectAttempts >= maxReconnectAttempts) {
-    console.log('Max reconnect attempts reached');
+    // Max reconnect attempts reached
     return;
   }
 

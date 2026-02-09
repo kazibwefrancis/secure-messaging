@@ -10,11 +10,13 @@ export function seedData() {
     dbHelpers.insertChat.run(`Chat ${i}`, new Date().toISOString(), 0);
   }
 
-  // Seed messages
+  // Seed messages - ensure at least 20,000 messages
   const chats = db.prepare('SELECT id FROM chats').all() as { id: number }[];
   let messageId = 1;
+  const messagesPerChat = Math.ceil(20000 / chats.length); // At least 100 per chat to ensure 20K total
+  
   chats.forEach(chat => {
-    const messageCount = Math.floor(Math.random() * 100) + 20; // 20-120 messages per chat
+    const messageCount = messagesPerChat + Math.floor(Math.random() * 50); // 100-150 messages per chat
     for (let j = 0; j < messageCount; j++) {
       const ts = new Date(Date.now() - Math.random() * 365 * 24 * 60 * 60 * 1000).toISOString();
       const sender = `User${Math.floor(Math.random() * 10) + 1}`;
